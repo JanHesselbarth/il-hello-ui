@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head>
+        <title>Integrationlayer Hello Example - GET</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+
+        <h2>Result</h2>
+        <p>Result:</p>
+        <span th:text="${result}" />
+        <p></p>
+        <h2>Hello Sample -Anwendungsfälle </h2>
+        <p>Aufruf hello-api - GET: <a th:href="@{/sampleget}">start</a></p>
+        <p>Aufruf hello-api - POST: <a th:href="@{/samplepost}">start</a></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+applications:
+  - name: hello-ui-dev
+
+    instances: 1
+    memory: 1G
+    disk_quota: 1G
+
+    stack: cflinuxfs4
+    buildpacks:
+      - java_buildpack_offline
+
+    path: target/hello-ui-0.0.1-SNAPSHOT.jar
+
+    env:
+      #     SPRING_PROFILES_ACTIVE: 'dev'
+      APP_LOG_LEVEL: INFO
+      ENABLE_DEV_BASIC_AUTH: true
+      LOG_SPLUNK_RETRY_COUNT: 5
+      TZ: Europe/Berlin
+      #JAVA_OPTS: --add-reads jdk.jfr=ALL-UNNAMED -XX:MaxDirectMemorySize=100M"
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+}}'
+      JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+      SWAGGER_ENABLE: true
+
+    services:
+      - systemEnvironment
+      - splunk
+#      - hello-ui-dev-routing
+
+    routes:
+      - route: hello-ui-dev.pcfres-intra.dev.datev.de
